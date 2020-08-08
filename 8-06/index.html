@@ -15,17 +15,10 @@
       (() => {
         function Counter(props) {
           return (
-            <li style={{ backgroundColor: props.counter.color }} onClick={() => props.countUp(props.counter)}>
+            <li style={{ backgroundColor: props.counter.color }}>
               {props.counter.id}:{props.counter.count}
             </li>
           );
-        }
-
-        function CounterList(props) {
-          const counters = props.counters.map((counter) => {
-            return <Counter counter={counter} key={counter.id} countUp ={props.countUp}/>;
-          });
-          return <ul>{counters}</ul>;
         }
 
         class App extends React.Component {
@@ -38,18 +31,15 @@
                 { id: "C", count: 0, color: "limegreen" },
               ],
             };
-            this.countUp = this.countUp.bind(this);
-          }
-          countUp(counter){
-
           }
           render() {
             return (
               <div className="container">
-                <CounterList 
-                    counters={this.state.counters}
-                    countUp={this.countUp}
-                    />
+                <ul>
+                  <Counter counter={this.state.counters[0]} />
+                  <Counter counter={this.state.counters[1]} />
+                  <Counter counter={this.state.counters[2]} />
+                </ul>
                 <div>TOTAL INVENTORY: 3</div>
               </div>
             );
